@@ -1,0 +1,19 @@
+<form [formGroup]="frm">
+  <div>
+    Name : 
+    <input formControlName="name">
+    <br>
+    <div style="color: red" *ngIf="frm.get('name').errors && frm.get('name').touched">
+      <span *ngIf="frm.get('name').errors.required">name required !</span>
+      <span *ngIf="frm.get('name').errors.minlength">min 3 characters required</span>
+      <span *ngIf="frm.get('name').errors.maxlength">max 10 characters allowed</span>
+    </div>
+  </div>
+  <div>
+    Email : 
+    <input formControlName="email">
+  </div>
+  <div>
+    <button (click)="register()" [disabled]="!frm.valid">Register</button>
+  </div>
+</form>

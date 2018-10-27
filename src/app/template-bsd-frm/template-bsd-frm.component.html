@@ -1,0 +1,19 @@
+<form #f="ngForm"> <!--#f is a variable and inside variable passing the whole reference of form to it-->
+ <div>
+   Name : <input name="nm" ngModel required minlength="3" pattern="^[a-zA-Z\s]+$" maxlength="10" #nme="ngModel">
+   <br/>
+   <div *ngIf="nme.errors && nme.touched" style="color:red;">
+     <span *ngIf="nme.errors['required']">Name required !</span>
+     <span *ngIf="nme.errors['minlength']">minimum 3 characters required ! </span>
+     <span *ngIf="nme.errors['maxlength']">maximum 10 characters required !</span>
+     <span *ngIf="nme.errors['pattern']">allow characters allowed</span>
+   </div>
+ </div>
+ <p>
+    Email : <input name="em" ngModel required>
+  </p>
+  <p>
+    <button [disabled]="!f.valid" (click)="register()">Login</button>
+    <button (click)="clear()" >Reset</button>
+  </p>
+</form>
